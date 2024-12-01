@@ -24,25 +24,25 @@ class ChartView(ListView):
     def get_querryset(self, *args, **kwargs):
         pass
 
-    def PieCountbySeverity(request):
-        query = """
+def PieCountbySeverity(request):
+    query = """
         SELECT severity_level, COUNT(*) as count
         FROM fire_incident
         GROUP BY severity_level
         """
+    data = {}
+    with connection.cursor() as cursor:
+        cursor.execute(query)
+        rows = cursor.fetchall()
+
+    if rows:
+        data = {severity: count for severity, count in rows}
+    else:
         data = {}
-        with connection.cursor() as cursor:
-            cursor.execute(query)
-            rows = cursor.fetchall()
 
-        if rows:
-            data = {severity: count for severity, count in rows}
-        else:
-            data = {}
-
-        return JsonResponse
+    return JsonResponse
     
-    def LineCountbyMonth(request):
+def LineCountbyMonth(request):
 
         current_year = datetime.now() .year
 
@@ -65,7 +65,8 @@ class ChartView(ListView):
         }
 
         return JsonResponse(result_with_month_names)
-    def MultilineIncidentTop3Country(request):
+
+def MultilineIncidentTop3Country(request):
 
         query = '''
             SELECT
@@ -126,7 +127,7 @@ class ChartView(ListView):
         
         return JsonResponse(result)
     
-    def multipleBarbySeverity(request):
+def multipleBarbySeverity(request):
         query = '''
         SELECT
             fi.severity_level,
