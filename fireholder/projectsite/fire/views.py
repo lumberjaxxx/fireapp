@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic.list import ListView
-from fire.models import Locations, Incident
+from fire.models import Locations, Incident, FireStation
 from django.db import connection
 from django.http import JsonResponse
 from django.db.models.functions import ExtractMonth
@@ -18,10 +18,10 @@ class ChartView(ListView):
     template_name = 'chart.html'
 
     def get_context_data(self, **kwargs):
-        context = super() .get_context(**kwargs)
+        context = super().get_context_data(**kwargs)
         return context
     
-    def get_querryset(self, *args, **kwargs):
+    def get_queryset(self, *args, **kwargs):
         pass
 
 def PieCountbySeverity(request):
@@ -159,6 +159,37 @@ def multipleBarbySeverity(request):
              result[level] = dict(sorted(result[level].items()))
         
         return JsonResponse(result)
+
+def map_station(request):
+     fire_stations = FireStation.objects.values("name", "latitude", "longitude")
+     fire_stations_list = [
+          {
+               "name": station["name"],
+               "latitude": float(station["latitude"]),
+               "longitude": float(station["longitude"]),
+          }
+          for station in fire_stations
+     ]
+     return render(request, "map_station.html", {"fireStations": fire_stations_list})
+
+def map_incidents(request):
+     incidents = Incident.objects.select_related("location").values(
+          "location_name", "location_latitude", "location_longitude", 
+          "date_time", "severity_level", "description"
+     )
+
+     incidents_list = [
+          {
+               "name": incident["location_name"],
+               "latitude": float(incident["location_latitude"]),
+               "longitude": float(incident["location_longitude"]),
+               "date_time": incident["date_time"].strftime("%Y-%m-%d %H:%H:%S") if incident["date_time"] else "N/A",
+               "severity_level": incident["severity_level"],
+               "description": incident["description"],
+          }
+          for incident in incidents
+     ]
+     return render(request, "map_incidents.html", {"fireIncidents": incidents_list})
 
 
 

@@ -115,11 +115,12 @@
         </div>
     </div>
 </div>
-{% endblock %} {% block chart %}
+{% endblock %}
+{% block chart %}
 <script>
     function loadChartData(){
         //piechart
-        fetch("/chart/")
+        fetch(" {% url 'pie-chart' %}")
             .then((response) => response.json())
             .then((data) => {
                 var severityLevels = Object.keys(data);
@@ -172,7 +173,7 @@
             .catch((error) => console.error("Error:", error));
 
             //linechart
-        fetch("/lineChart/")
+        fetch("{% url 'line-chart' %}")
             .then((response) => response.json())
             .then((result_with_month_names) => {
                 var months = Object.keys(result_with_month_names);
@@ -227,7 +228,7 @@
             })
             .catch((error) => console.error("Error:", error));
         //multiLine
-        fetch("/multilineChart/")
+        fetch("{% url 'multiline-chart' %}")
             .then((response) => response.json())
             .then((result_with_month_names) => {
                 var countries = Object.keys(result_with_month_names);
@@ -329,7 +330,7 @@
             })
             .catch((error) => console.error("Error:", error));   
         //multiBarChart
-        fetch("/multiBarChart/")
+        fetch("{% url 'multibar-chart' %}")
             .then((response) => response.json())
             .then((result) => {
                 var severitylevel = Object.keys(result);
@@ -438,7 +439,7 @@
         doughnutChart = document.getElementById("doughnutChart").getContext("2d"),
         radarChart = document.getElementById("radarChart").getContext("2d"),
         bubbleChart = document.getElementById("bubbleChart").getContext("2d"),
-        // <!-- multipleLineChart = document.getElementById("multipleLineChart").getContext("2d"), -->
+        multipleLineChart = document.getElementById("multipleLineChart").getContext("2d"), 
         // <!-- multipleBarChart = document.getElementById("multipleBarChart").getContext("2d"), -->
         htmlLegendsChart = document.getElementById("htmlLegendsChart").getContext("2d");
     // <!-- var myLineChart = new Chart(lineChart, {
@@ -556,33 +557,33 @@
     //     },
     // }); -->
 
-    var myDoughnutChart = new Chart(doughnutChart, {
-        type: "doughnut",
-        data: {
-            datasets: [
-                {
-                    data: [10, 20, 30],
-                    backgroundColor: ["#f3545d", "#fdaf4b", "#1d7af3"],
-                },
-            ],
-            labels: ["Red", "Yellow", "Blue"],
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            legend: {
-                position: "bottom",
-            },
-            layout: {
-                padding: {
-                    left: 20,
-                    right: 20,
-                    top: 20,
-                    bottom: 20,
-                },
-            },
-        },
-    });
+    // var myDoughnutChart = new Chart(doughnutChart, {
+    //     type: "doughnut",
+    //     data: {
+    //         datasets: [
+    //             {
+    //                 data: [10, 20, 30],
+    //                 backgroundColor: ["#f3545d", "#fdaf4b", "#1d7af3"],
+    //             },
+    //         ],
+    //         labels: ["Red", "Yellow", "Blue"],
+    //     },
+    //     options: {
+    //         responsive: true,
+    //         maintainAspectRatio: false,
+    //         legend: {
+    //             position: "bottom",
+    //         },
+    //         layout: {
+    //             padding: {
+    //                 left: 20,
+    //                 right: 20,
+    //                 top: 20,
+    //                 bottom: 20,
+    //             },
+    //         },
+    //     },
+    // });
 
     var myRadarChart = new Chart(radarChart, {
         type: "radar",
