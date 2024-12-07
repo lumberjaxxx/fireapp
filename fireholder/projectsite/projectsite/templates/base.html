@@ -184,22 +184,28 @@
                 </span>
                 <h4 class="text-section">Components</h4>
               </li>
+
               <li class="nav-item">
                 <a data-toggle="collapse" href="#base">
                   <i class="fas fa-layer-group"></i>
-                  <p>Location</p>
+                  <p>Fire Administration</p>
                   <span class="caret"></span>
                 </a>
                 <div class="collapse" id="base">
                   <ul class="nav nav-collapse">
                     <li>
-                      <a href="components/avatars.html">
-                        <span class="sub-item">Avatars</span>
+                      <a href="{% url 'firestation-list'%}">
+                        <span class="sub-item">Fire Stations</span>
                       </a>
                     </li>
                     <li>
-                      <a href="components/buttons.html">
-                        <span class="sub-item">Buttons</span>
+                      <a href="{% url 'firefighter-list'%}">
+                        <span class="sub-item">Fire Fighters</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="{% url 'firetruck-list'%}">
+                        <span class="sub-item">Fire Trucks</span>
                       </a>
                     </li>
                     
@@ -228,25 +234,32 @@
                         <span class="sub-item">Fire Incidents</span>
                       </a>
                     </li>
+                    <li>
+                      <a href="{% url 'location-list' %}">
+                        <span class="sub-item">Locations</span>
+                      </a>
+                    </li>
                   </ul>
                 </div>
               </li>
+
+              <!-- weather -->
               <li class="nav-item">
                 <a data-toggle="collapse" href="#charts">
                   <i class="far fa-chart-bar"></i>
-                  <p>Charts</p>
+                  <p>Incidents</p>
                   <span class="caret"></span>
                 </a>
                 <div class="collapse" id="charts">
                   <ul class="nav nav-collapse">
                     <li>
-                      <a href="#">
-                        <span class="sub-item">Chart Js</span>
+                      <a href="{% url 'incident-list'%}">
+                        <span class="sub-item">Incidents</span>
                       </a>
                     </li>
                     <li>
-                      <a href="charts/sparkline.html">
-                        <span class="sub-item">Sparkline</span>
+                      <a href="{% url 'weather-list' %}">
+                        <span class="sub-item">Weather</span>
                       </a>
                     </li>
                   </ul>
