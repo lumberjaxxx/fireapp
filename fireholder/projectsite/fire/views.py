@@ -324,15 +324,15 @@ def map_station(request):
 
 def map_incidents(request):
      incidents = Incident.objects.select_related("location").values(
-          "location_name", "location_latitude", "location_longitude", 
+          "location__name", "location__latitude", "location__longitude", 
           "date_time", "severity_level", "description"
      )
 
      incidents_list = [
           {
-               "name": incident["location_name"],
-               "latitude": float(incident["location_latitude"]),
-               "longitude": float(incident["location_longitude"]),
+               "name": incident["location__name"],
+               "latitude": float(incident["location__latitude"]),
+               "longitude": float(incident["location__longitude"]),
                "date_time": incident["date_time"].strftime("%Y-%m-%d %H:%H:%S") if incident["date_time"] else "N/A",
                "severity_level": incident["severity_level"],
                "description": incident["description"],
