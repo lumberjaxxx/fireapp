@@ -14,7 +14,7 @@ from fire.views import (
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('', HomePageView.as_view(), name='home'),
-    path('dashborad_chart', ChartView.as_view(),name='dashboard-chart'),
+    path('dashboard_chart', ChartView.as_view(),name='dashboard-chart'),
     path('chart/', PieCountbySeverity, name='pie-chart'),
     path('lineChart/', LineCountbyMonth, name='line-chart'),
     path('multilineChart/', MultilineIncidentTop3Country, name='multiline-chart'),
@@ -36,7 +36,7 @@ urlpatterns = [
     path('incident/incident_list/<pk> delete', IncidentDeleteView.as_view(), name="incident-delete"),
 
     # firefighter
-    path('firefighters/firefighter_list/', FirefightersListView.as_view(), name='firefighter-list'),
+    path('firefighter/firefighter_list/', FirefightersListView.as_view(), name='firefighter-list'),
     path('firefighter/firefighter_list/add', FirefightersCreateView.as_view(), name="firefighter-add"),
     path('firefighter/firefighter_list/<pk>', FirefightersUpdateView.as_view(), name="firefighter-update"),
     path('firefighter/firefighter_list/<pk> delete', FirefightersDeleteView.as_view(), name="firefighter-delete"),

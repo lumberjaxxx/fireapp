@@ -32,96 +32,96 @@ class ChartView(ListView):
 class LocationsListView(ListView):
     model = Locations
     context_object_name = 'locations'
-    template_name = "locations_list.html"
+    template_name = "locations/locations_list.html"
     paginate_by = 5
 
 class LocationCreateView(CreateView):
     model = Locations
     form_class = LocationForm
-    template_name = 'location_add.html'
+    template_name = 'locations/location_add.html'
     success_url = reverse_lazy('location-list')
 
 class LocationUpdateView(UpdateView):
     model = Locations
     form_class = LocationForm
-    template_name = 'location_edit.html'
+    template_name = 'locations/location_edit.html'
     success_url = reverse_lazy('location-list')
 
 class LocationDeleteView(DeleteView):
     model = Locations
-    template_name = 'location_del.html'
+    template_name = 'locations/location_del.html'
     success_url = reverse_lazy('location-list')
 
 # incidents
 class IncidentListView(ListView):
     model = Incident
     context_object_name = 'incident'
-    template_name = "incident_list.html"
+    template_name = "incident/incident_list.html"
     paginate_by = 5
     
 class IncidentCreateView(CreateView):
     model = Incident
     form_class = IncidentForm
-    template_name = 'incident_add.html'
+    template_name = 'incident/incident_add.html'
     success_url = reverse_lazy ('incident-list')
 
 class IncidentUpdateView(UpdateView):
     model = Incident
     form_class = IncidentForm
-    template_name = 'incident_edit.html'
+    template_name = 'incident/incident_edit.html'
     success_url = reverse_lazy('incident-list')
 
 class IncidentDeleteView(DeleteView):
     model = Incident
-    template_name = 'incident_del.html'
+    template_name = 'incident/incident_del.html'
     success_url = reverse_lazy('incident-list')
 
 # firefighters
 class FirefightersListView(ListView):
     model = Firefighters 
     context_object_name = 'firefighter'
-    template_name = "firefighter_list.html"
+    template_name = "firefighters/firefighter_list.html"
     paginate_by = 5
     
 class FirefightersCreateView(CreateView):
     model = Firefighters
     form_class = FirefigthersForm
-    template_name = 'firefighter_add.html'
+    template_name = 'firefighters/firefighter_add.html'
     success_url = reverse_lazy ('firefigther-list')
 
 class FirefightersUpdateView(UpdateView):
     model = Firefighters
     form_class = FirefigthersForm
-    template_name = 'firefighter_edit.html'
+    template_name = 'firefighters/firefighter_edit.html'
     success_url = reverse_lazy('firefighter-list')
 
 class FirefightersDeleteView(DeleteView):
     model = Firefighters
-    template_name = 'firefighter_del.html'
+    template_name = 'firefighters/firefighter_del.html'
     success_url = reverse_lazy('firefighter-list')
 
 # firestation
 class FireStationListView(ListView):
     model = FireStation 
     context_object_name = 'firestation'
-    template_name = "firestation_list.html"
+    template_name = "firestation/firestation_list.html"
     paginate_by = 5
     
 class FireStationCreateView(CreateView):
     model = FireStation
     form_class = FireStationForm
-    template_name = 'firestation_add.html'
+    template_name = 'firestation/firestation_add.html'
     success_url = reverse_lazy ('firestation-list')
 
 class FireStationUpdateView(UpdateView):
     model = FireStation
     form_class = FireStationForm
-    template_name = 'firestation_edit.html'
+    template_name = 'firestation/firestation_edit.html'
     success_url = reverse_lazy('firestation-list')
 
 class FireStationDeleteView(DeleteView):
     model = FireStation
-    template_name = 'firestation_del.html'
+    template_name = 'firestation/firestation_del.html'
     success_url = reverse_lazy('firestation-list')
 
 #firetruck
@@ -129,48 +129,48 @@ class FireStationDeleteView(DeleteView):
 class FireTruckListView(ListView):
     model = FireTruck 
     context_object_name = 'firetruck'
-    template_name = "firetruck.html"
+    template_name = "firetruck/firetruck_list.html"
     paginate_by = 5
     
 class FireTruckCreateView(CreateView):
     model = FireTruck
     form_class = FireTruckForm
-    template_name = 'firetruck_add.html'
+    template_name = 'firetruck/firetruck_add.html'
     success_url = reverse_lazy ('firefigther-list')
 
 class FireTruckUpdateView(UpdateView):
     model = FireTruck
     form_class = FireTruckForm
-    template_name = 'firetruck_edit.html'
+    template_name = 'firetruck/firetruck_edit.html'
     success_url = reverse_lazy('firetruck-list')
 
 class FireTruckDeleteView(DeleteView):
     model = FireTruck
-    template_name = 'firetruck_del.html'
+    template_name = 'firetruck/firetruck_del.html'
     success_url = reverse_lazy('firetruck-list')
 
 # weather
 class WeatherConditionListView(ListView):
     model = WeatherConditions 
     context_object_name = 'weathercondition'
-    template_name = "weathercondition.html"
+    template_name = "weather/weather_list.html"
     paginate_by = 5
     
 class WeatherConditionCreateView(CreateView):
     model = WeatherConditions
     form_class = WeatherConditionForm
-    template_name = 'weather_add.html'
+    template_name = 'weather/weather_add.html'
     success_url = reverse_lazy ('weather-list')
 
 class WeatherConditionsUpdateView(UpdateView):
     model = WeatherConditions
     form_class = WeatherConditionForm
-    template_name = 'weather_edit.html'
+    template_name = 'weather/weather_edit.html'
     success_url = reverse_lazy('weather-list')
 
 class WeatherConditionDeleteView(DeleteView):
     model = WeatherConditions
-    template_name = 'weather_del.html'
+    template_name = 'weather/weather_del.html'
     success_url = reverse_lazy('weather-list')
 
 def PieCountbySeverity(request):

@@ -42,7 +42,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                { % for object in object_list %}
+                                {% for object in object_list %}
                                 <tr>
                                     <td> {{object.name }}</td>
                                     <td> {{object.latitude }}</td>
@@ -63,7 +63,7 @@
                                 {% endfor %}
                             </tbody>
                         </table>
-                        { % include 'includes/pagination.html' %}
+                        {% include 'includes/pagination.html' %}
                         </div>
                     </div>
                 </div>

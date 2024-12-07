@@ -39,7 +39,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                { % for object in object_list %}
+                                {% for object in object_list %}
                                 <tr>
                                     <td> {{object.location }}</td>
                                     <td> {{object.date_time }}</td>
@@ -58,7 +58,7 @@
                                 {% endfor %}
                             </tbody>
                         </table>
-                        { % include 'includes/pagination.html' %}
+                        {% include 'includes/pagination.html' %}
                         </div>
                     </div>
                 </div>
