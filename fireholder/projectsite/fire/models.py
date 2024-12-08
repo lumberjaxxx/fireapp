@@ -1,5 +1,6 @@
 from django.db import models
-
+from django.core.exceptions import ValidationError
+from django.utils import timezone
 
 class BaseModel(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, db_index=True)
@@ -7,6 +8,15 @@ class BaseModel(models.Model):
 
     class Meta:
         abstract = True
+
+def validate_not_future(value):
+    if value > timezone.now():
+        raise ValidationError(f'Date: {value} cannot be in the future.')
+
+
+def validate_non_negative(value):
+    if value < 0:
+        raise ValidationError(f'{value} cannot be negative.')
 
 
 class Locations(BaseModel):
@@ -19,6 +29,9 @@ class Locations(BaseModel):
     city = models.CharField(max_length=150)  # can be in separate table
     country = models.CharField(max_length=150)  # can be in separate table
 
+    def __str__(self):
+        return self.name
+
 
 class Incident(BaseModel):
     SEVERITY_CHOICES = (
@@ -27,7 +40,7 @@ class Incident(BaseModel):
         ('Major Fire', 'Major Fire'),
     )
     location = models.ForeignKey(Locations, on_delete=models.CASCADE)
-    date_time = models.DateTimeField(blank=True, null=True)
+    date_time = models.DateTimeField(blank=True, null=True, validators=[validate_not_future])
     severity_level = models.CharField(max_length=45, choices=SEVERITY_CHOICES)
     description = models.CharField(max_length=250)
 
@@ -57,12 +70,15 @@ class Firefighters(BaseModel):
         ('Driver', 'Driver'),
         ('Captain', 'Captain'),
         ('Battalion Chief', 'Battalion Chief'),)
+    
     name = models.CharField(max_length=150)
     rank = models.CharField(max_length=150)
     experience_level = models.CharField(max_length=150)
     station = models.CharField(
         max_length=45, null=True, blank=True, choices=XP_CHOICES)
-
+    
+    def __str__(self):
+        return self.name
 
 class FireTruck(BaseModel):
     truck_number = models.CharField(max_length=150)
@@ -73,7 +89,14 @@ class FireTruck(BaseModel):
 
 class WeatherConditions(BaseModel):
     incident = models.ForeignKey(Incident, on_delete=models.CASCADE)
-    temperature = models.DecimalField(max_digits=10, decimal_places=2)
-    humidity = models.DecimalField(max_digits=10, decimal_places=2)
-    wind_speed = models.DecimalField(max_digits=10, decimal_places=2)
+    temperature = models.DecimalField(
+        max_digits=10, decimal_places=2, validators=[validate_non_negative])
+    humidity = models.DecimalField(
+        max_digits=10, decimal_places=2, validators=[validate_non_negative])
+    wind_speed = models.DecimalField(
+        max_digits=10, decimal_places=2, validators=[validate_non_negative])
     weather_description = models.CharField(max_length=150)
+
+
+    def __str__(self):
+        return f"Weather for {self.incident} - {self.weather_description}"

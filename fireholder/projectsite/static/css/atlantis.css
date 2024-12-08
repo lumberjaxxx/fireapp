@@ -899,6 +899,7 @@ body {
     width: calc(100% - 280px); }
 
 .footer {
+  margin:0;
   border-top: 1px solid #eee;
   padding: 15px;
   background: #ffffff;

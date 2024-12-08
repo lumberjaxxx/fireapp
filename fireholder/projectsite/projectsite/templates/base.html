@@ -22,7 +22,12 @@
     <!-- CSS Files -->
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
     <link rel="stylesheet" href="{% static 'css/atlantis.min.css' %}" />
-
+    <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-Gnbj9NOaTfqLWvB5a5UWVJ1t4nYjcWVxasHpTA9Gc0VH1VjEUqCugXyFwnbCgmR9"
+    crossorigin="anonymous"
+  >
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link rel="stylesheet" href="{% static 'css/demo.css' %}" />
   </head>
@@ -325,7 +330,16 @@
     <script src="{% static 'js/plugin/jqvmap/maps/jquery.vmap.world.js' %}"></script>
     <script src="{% static 'js/plugin/sweetalert/sweetalert.min.js' %}"></script>
     <script src="{% static 'js/atlantis.min.js' %}"></script>
-
+    <script
+    src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-OERcA2EloB59/ujMd8t5cWT6MlhpwZrjevPIVIwz9eBgGURyJJw2CqNfFwIS3X6c"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+    integrity="sha384-rbsA2VBKQ5Bb7GI1oG8bXg2Rg5K4eJABRZH81uC5iYIK1E1lEGbWs2RMk52pvnTm"
+    crossorigin="anonymous"
+  ></script>
     {% block chart %}
 
     {% endblock %}

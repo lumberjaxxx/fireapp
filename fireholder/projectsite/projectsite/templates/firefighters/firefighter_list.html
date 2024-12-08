@@ -11,9 +11,9 @@
                     <br />
                         <div class="col-md-12 row">
                             <div class="col-md-6">
-                                <form class="navbar-left navbar-form nav-search mr-md-3" action="">
+                                <form class="navbar-left navbar-form nav-search mr-md-3" action="{% url 'firefighter-list' %}">
                                     <div class="input-group">
-                                        <input type="text" placeholder="Search ..." class="form-control" />
+                                        <input type="text" placeholder="Search ..." class="form-control" name="q" value="{{request.GET.q}}"/>
                                         <div class="input-group-append">
                                             <span class="input-group-text">
                                                 <i class="la la-search search-icon"></i>
@@ -24,7 +24,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="pull-right">
-                                    <a href="{% url 'firefighter-add' %}" class="btn btn-success btn-rounded">Add Location</a>
+                                    <a href="{% url 'firefighter-add' %}" class="btn btn-success btn-rounded">Add New Officer</a>
                                 </div>
                             </div>
                         </div>
@@ -45,8 +45,8 @@
                                     <td> {{object.rank }}</td>
                                     <td> {{object.experience_level }}</td>
                                     <td> {{object.station }}</td>
-                                    <td> <A href="incident_list/{{object.id}}">Edit</A></td>
-                                    <td><a href="incident_list/{{object.id}} /delete" class="text-danger">Delete</a>
+                                    <td> <A href="{% url 'firefighter-update' object.id %}">Edit</A></td>
+                                    <td><a href="{% url 'firefighter-delete' object.id %}" class="text-danger">Delete</a>
                                     </a></td>
                                 </tr>
                                 {% empty %}
@@ -58,13 +58,14 @@
                                 {% endfor %}
                             </tbody>
                         </table>
-                        { % include 'includes/pagination.html' %}
+                        {% include 'includes/pagination.html' %}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+{% include 'includes/message.html' %}
 {% endblock %}
 
             
