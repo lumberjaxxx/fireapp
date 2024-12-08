@@ -11,9 +11,9 @@
                     <br />
                         <div class="col-md-12 row">
                             <div class="col-md-6">
-                                <form class="navbar-left navbar-form nav-search mr-md-3" action="">
+                                <form class="navbar-left navbar-form nav-search mr-md-3" action="{% url 'weather-list'%}">
                                     <div class="input-group">
-                                        <input type="text" placeholder="Search ..." class="form-control" />
+                                        <input type="text" placeholder="Search ..." class="form-control" name="q" value="{{request.GET.q}}"/>
                                         <div class="input-group-append">
                                             <span class="input-group-text">
                                                 <i class="la la-search search-icon"></i>
@@ -24,7 +24,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="pull-right">
-                                    <a href="{% url 'weather-add' %}" class="btn btn-success btn-rounded">Add Location</a>
+                                    <a href="{% url 'weather-add' %}" class="btn btn-success btn-rounded">Add Weather Conditions</a>
                                 </div>
                             </div>
                         </div>
@@ -49,8 +49,8 @@
                                     <td> {{object.wind_speed }}</td>
                                     <td> {{object.weather_description }}</td>
 
-                                    <td> <A href="weather_list/{{object.id}}">Edit</A></td>
-                                    <td><a href="weather_list/{{object.id}} /delete" class="text-danger">Delete</a>
+                                    <td> <A href="{% url 'weather-update' object.id %}">Edit</A></td>
+                                    <td><a href="{% url 'weather-delete' object.id %}" class="text-danger">Delete</a>
                                     </a></td>
                                 </tr>
                                 {% empty %}
@@ -69,6 +69,7 @@
             </div>
         </div>
     </div>
+    {% include 'includes/message.html' %}
 {% endblock %}
 
             

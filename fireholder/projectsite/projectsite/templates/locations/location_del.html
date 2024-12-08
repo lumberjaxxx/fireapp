@@ -3,7 +3,7 @@
 {% block content %}
 <div class="content">
     <div class="container-fluid">
-        <h4 class="page-title">Home</h4>
+        <h4 class="page-title">Locations</h4>
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -13,11 +13,12 @@
                     <div class="col-md-6">
                         <div class="card-body">
                             <form action="" method="post" novalidate>
+                                <p>Are you sure you want to delete "{{ object }}"?</p>
                                 {% csrf_token %}
                                 {% include 'includes/form.html' %}
                                 <div class="form-group">
                                     <div class="col-md-12 col-sm-3">
-                                        <button type="submit" class="btn btn-primary btn-rounded">Submit</button>
+                                        <button type="submit" class="btn btn-primary btn-rounded">Delete</button>
                                     </div>
                                 </div>
                             </form>
